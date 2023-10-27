@@ -1,0 +1,124 @@
+body{
+	background-image: url('../assets/computers.jpg');
+    background-size: cover;
+	background-color: rgba(173, 216, 230, 0.5); /* Adjust the alpha value (0.5) as needed */
+
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .card {
+    width: 500px;
+    padding: 1rem;
+    border-radius: 0.25rem;
+	background-color: azure;
+ /*   background-image: url('../assets/fondoRegister.jpg');
+    background-size: cover; */
+  overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 10);
+    /* Evita que los elementos hijos salgan de la tarjeta */
+  }
+  
+  .input-field {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    width: auto;
+	height: 30px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+	font-size: 18px;
+    box-sizing: border-box; /* Asegura que el padding no se agregue al ancho total */
+  }
+  .field{
+	margin-bottom: 1rem;
+   
+ }
+ 
+  .input-field:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  .button {
+    background: #007bff;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+	margin-left: 1rem;
+  }
+  
+  .button:hover {
+    background: #0056b3;
+  }
+
+  .a{
+	color:white;
+  }
+
+
+ 
+
+
+  .error-message{
+	width:400px;
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	font-size: 18px;
+	font:bold;
+	color:white;
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+
+  .error-message:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  @media screen and (min-width: 900px) {
+	.input-field {
+	  width: 400px; 
+	}
+  }
+
+
+  @media screen and (min-width: 700px) and (max-width: 800px) {
+	body {
+	  background-size: contain; 
+	  background-color: rgba(173, 216, 230, 0.9);
+	}
+  
+	.container {
+	  align-items: flex-start; 
+	}
+  
+	.card {
+	  width: 100%; 
+	}
+  
+	.input-field {
+	  width: 100%; 
+	}
+  
+	.button {
+	  margin-left: 0; 
+	}
+  }
+  
+
+
+
+
+
+  
