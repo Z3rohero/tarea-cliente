@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod"; // Asegúrate de importar zodResolver
 import "./style.css";
 import { registerSchema } from "../schema/auth";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 //import { Link } from "react-router-dom";
@@ -20,8 +21,6 @@ export const Register = () => {
 
   const onSubmit = async (data) => {
     try {
-     
-
       const response = await fetch(
         "https://api-tarea-frrzc.ondigitalocean.app/api/register",
         {
@@ -45,10 +44,16 @@ export const Register = () => {
       console.error(error);
     }
   };
+  const [name, setName] = useState(""); // Add name state
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
 
   return (
     <div className="container">
       <div className="card">
+        <div className="welcome">Hello {name ? name : "World"}</div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="field">
             <input
@@ -58,6 +63,8 @@ export const Register = () => {
               })}
               className="input-field"
               placeholder="Nombre de usuario"
+              name="name"
+              onChange={handleNameChange}
             />
           </div>
 
@@ -96,7 +103,6 @@ export const Register = () => {
               </span>
             )}
           </div>
-
           <button type="submit" className="button">
             Enviar
           </button>

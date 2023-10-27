@@ -13,7 +13,7 @@ body{
   }
   
   .card {
-    width: 500px;
+    width: auto;
     padding: 1rem;
     border-radius: 0.25rem;
 	background-color: azure;
@@ -67,6 +67,11 @@ body{
 	color:white;
   }
 
+  .welcome{
+	font-size: 26px;
+	margin-bottom: 0.5rem;
+  }
+
 
  
 
@@ -93,10 +98,10 @@ body{
   }
 
 
-  @media screen and (min-width: 700px) and (max-width: 800px) {
+  @media screen and (min-width: 600px) and (max-width: 800px) {
 	body {
 	  background-size: contain; 
-	  background-color: rgba(173, 216, 230, 0.9);
+	/*  background-color: rgba(173, 216, 230, 0.9);*/
 	}
   
 	.container {
@@ -104,7 +109,8 @@ body{
 	}
   
 	.card {
-	  width: 100%; 
+		max-width: 100% !important;
+
 	}
   
 	.input-field {
