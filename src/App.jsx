@@ -1,20 +1,11 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
-import { LoginPage } from './Pages/LoginPage'; 
-import { RegisterPage } from './Pages/RegisterPage'; // Importa el componente LoginPage
-
+import {Rutas} from './routes'
 
 
 function App() {
   return (
-    <BrowserRouter>
-      <main >
-        <Routes>
-          <Route path="/" element={<LoginPage/>} /> 
-          <Route path="/registro" element={<RegisterPage/>} /> 
-        </Routes>
-      </main>
-    </BrowserRouter>
+    <Rutas></Rutas>
+ 
   );
 }
 

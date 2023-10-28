@@ -1,11 +1,15 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "../schema/auth";
-import { Link } from "react-router-dom";
-
+import { Link,useNavigate } from "react-router-dom";
 import "./style.css";
+import { useState } from "react";
+
 
 export const Login = () => {
+
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -14,27 +18,28 @@ export const Login = () => {
     resolver: zodResolver(loginSchema),
   });
 
-
+  const[error , setError] = useState(null);
 
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch("https://api-tarea-frrzc.ondigitalocean.app/api/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        }
-      );
+      const response = await fetch("https://api-tarea-frrzc.ondigitalocean.app/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
       console.log(response);
-      const { token } = await response.json();
-      localStorage.setItem("token", token);
+      
+      const responseBody = await response.text(); // Leer el cuerpo de la respuesta
+      
       if (response.ok) {
-        alert("El formulario se envió correctamente");
+        const { token } = JSON.parse(responseBody);
+        localStorage.setItem("token", token);
+        navigate("/Task");
       } else {
-        throw new Error("Error al enviar el formulario");
+        setError(responseBody); // Guardar el mensaje de error en la variable 'error'
       }
     } catch (error) {
       console.error(error);
@@ -81,6 +86,12 @@ export const Login = () => {
             Enviar
           </button>
         </form>
+        {
+        error && (
+          <span className="error-message">Credenciales inválidas</span>
+        )
+      }
+        
       </div>
     </div>
   );

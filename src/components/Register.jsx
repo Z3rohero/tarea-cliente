@@ -34,8 +34,6 @@ export const Register = () => {
       );
 
       if (response.ok) {
-        alert("El formulario se envió correctamente");
-        // Redirige al usuario a la página de inicio de sesión
         navigate("/");
       } else {
         throw new Error("Error al enviar el formulario");
