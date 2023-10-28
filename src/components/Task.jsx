@@ -7,7 +7,7 @@ export const Task = () => {
   const [nuevaTarea, setNuevaTarea] = useState({
     tarea_titulo: "",
     tarea_descripcion: "",
-    tarea_estado: "activo",
+    tarea_estado: "Pendiente",
     codigo_user: 1,
   });
   const [editarTarea, setEditarTarea] = useState(null);
@@ -20,6 +20,7 @@ export const Task = () => {
     try {
       const respuesta = await axiosWithAuth.get(url);
       setTareas(respuesta.data.tareas);
+      console.log(respuesta.data.tareas);
     } catch (error) {
       console.error("Error al obtener tareas:", error);
     }
@@ -33,7 +34,7 @@ export const Task = () => {
       setNuevaTarea({
         tarea_titulo: "",
         tarea_descripcion: "",
-        tarea_estado: "activo",
+        tarea_estado: "Pendiente",
         codigo_user: 1,
       });
       obtenerTareas();
@@ -71,7 +72,7 @@ export const Task = () => {
 
   return (
     <div className="container">
-      <div className="card">
+      <div className="">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -82,31 +83,49 @@ export const Task = () => {
             }
           }}
         >
-          <input
-            type="text"
-            className="input-field field"
-            placeholder="Título"
-            value={nuevaTarea.tarea_titulo}
-            onChange={(e) =>
-              setNuevaTarea((prevState) => ({
-                ...prevState,
-                tarea_titulo: e.target.value,
-              }))
-            }
-          />
+          <div className="field">
+            <input
+              type="text"
+              className="input-field "
+              placeholder="Título"
+              value={nuevaTarea.tarea_titulo}
+              onChange={(e) =>
+                setNuevaTarea((prevState) => ({
+                  ...prevState,
+                  tarea_titulo: e.target.value,
+                }))
+              }
+            />
+          </div>
 
-          <input
-            type="text"
-            className="input-field field"
-            placeholder="Descripción"
-            value={nuevaTarea.tarea_descripcion}
-            onChange={(e) =>
-              setNuevaTarea((prevState) => ({
-                ...prevState,
-                tarea_descripcion: e.target.value,
-              }))
-            }
-          />
+          <div className="field">
+            <input
+              type="text"
+              className="input-field "
+              placeholder="Descripción"
+              value={nuevaTarea.tarea_descripcion}
+              onChange={(e) =>
+                setNuevaTarea((prevState) => ({
+                  ...prevState,
+                  tarea_descripcion: e.target.value,
+                }))
+              }
+            />
+          </div>
+          <div className="field">
+            <input
+              type="text"
+              className="input-field"
+              placeholder="Estado"
+              value={nuevaTarea.tarea_estado}
+              onChange={(e) =>
+                setNuevaTarea((prevState) => ({
+                  ...prevState,
+                  tarea_estado: e.target.value,
+                }))
+              }
+            />
+          </div>
 
           {editarTarea ? (
             <button className="button" type="submit">
@@ -125,10 +144,11 @@ export const Task = () => {
               <li key={tarea.id}>
                 <span className="link_datos">
                   Título: {tarea.tarea_titulo} - Descripción:{" "}
-                  {tarea.tarea_descripcion} - Estado: {tarea.tarea_estado}
+                  {tarea.tarea_descripcion} - Estado: {tarea.tarea_estado} -
+                  Nombre usuario: {tarea.user_name}
                 </span>
                 <button
-                  className="link"
+                  className="button_task"
                   onClick={() => {
                     setEditarTarea({ ...tarea });
                     setNuevaTarea({
@@ -150,7 +170,7 @@ export const Task = () => {
               </li>
             ))
           ) : (
-            <li>No hay tareas disponibles</li>
+            <li className="error-message">No hay tareas disponibles</li>
           )}
         </ul>
       </div>

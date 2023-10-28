@@ -103,6 +103,24 @@ body{
 	  margin-left: 1rem;
 
   }
+ 
+  .button_task {
+    background: #007bff;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+	margin-left: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  }
+  
+  .button_task:hover {
+    background: #0056b3;
+  }
+
 
   .link_datos{
     background: white;

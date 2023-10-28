@@ -37,6 +37,7 @@ export const Login = () => {
       if (response.ok) {
         const { token } = JSON.parse(responseBody);
         localStorage.setItem("token", token);
+        alert('Crendeciales correcta formulario ok')
         navigate("/Task");
       } else {
         setError(responseBody); // Guardar el mensaje de error en la variable 'error'
