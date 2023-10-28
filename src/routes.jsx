@@ -1,4 +1,7 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+//import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import { LoginPage } from "./Pages/LoginPage";
 import { RegisterPage } from "./Pages/RegisterPage";
 import { TaskPage } from "./Pages/TaskPage";
