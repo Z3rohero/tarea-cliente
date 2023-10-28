@@ -12,7 +12,7 @@ export const Rutas = () => {
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/registro" element={<RegisterPage />} />
-          <Route path="/Task" element={isAuthenticated ? <TaskPage /> : <Navigate to="/" />}
+          <Route path="/Task" element={isAuthenticated ? <TaskPage /> : <Navigate to="/" />  }
           />
         </Routes>
       </main>
