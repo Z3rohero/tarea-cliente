@@ -1,14 +1,14 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "../schema/auth";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import "./style.css";
 import { useState } from "react";
 
 
 export const Login = () => {
 
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -37,7 +37,7 @@ export const Login = () => {
         localStorage.setItem("token", token);
         localStorage.setItem("user_id", user_id);
         alert('Crendeciales correcta formulario ok')
-        window.location.href = "/Task";
+        navigate("/Task");
       } else {
         setError(responseBody); // Guardar el mensaje de error en la variable 'error'
       }
