@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod"; // Asegúrate de importar
 import "./style.css";
 import { registerSchema } from "../schema/auth";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 //import { Link } from "react-router-dom";
 
@@ -12,9 +12,8 @@ export const Register = () => {
     register,
     handleSubmit,
     formState: { errors },
-    watch, // Asegúrate de que has importado y definido watch correctamente
   } = useForm({
-    resolver: zodResolver(registerSchema), // Asegúrate de que has definido registerSchema
+    resolver: zodResolver(registerSchema), 
   });
 
   const navigate = useNavigate();
@@ -42,7 +41,7 @@ export const Register = () => {
       console.error(error);
     }
   };
-  const [name, setName] = useState(""); // Add name state
+  const [name, setName] = useState(""); 
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -95,16 +94,25 @@ export const Register = () => {
               })}
               placeholder="Confirmar contraseña"
             />
-            {errors.password_confirmation && (
+          </div>
+          <div>
+          {errors.password_confirmation && (
               <span className="MessagerAlert">
                 {errors.password_confirmation.message}
               </span>
             )}
+
           </div>
+       
+
+          <span className="link"><Link to="/">Login</Link></span>
+       
           <button type="submit" className="button">
             Enviar
           </button>
         </form>
+
+        
       </div>
     </div>
   );

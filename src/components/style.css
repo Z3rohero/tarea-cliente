@@ -65,6 +65,7 @@ body{
 
   .a{
 	color:white;
+  font-size: 12px;
   }
 
   .welcome{
@@ -89,6 +90,33 @@ body{
   .error-message:focus {
     outline: none;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+
+  .link{
+   background: white;
+   /* color: white;*/
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+	  margin-left: 1rem;
+
+  }
+
+  .link_datos{
+    background: white;
+   /* color: white;*/
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+	  margin-left: 1rem;
+    font-size: 21px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   @media screen and (min-width: 900px) {

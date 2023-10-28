@@ -30,7 +30,7 @@ export const Login = () => {
         },
         body: JSON.stringify(data),
       });
-      console.log(response);
+      //console.log(response);
       
       const responseBody = await response.text(); // Leer el cuerpo de la respuesta
       
@@ -78,14 +78,14 @@ export const Login = () => {
               <span className="error-message">{errors.password.message}</span>
             )}
           </div>
-          <button className>
-            <Link to="/registro">Registrarse</Link>{" "}
-            {/* Enlace a la página de registro */}
-          </button>
+
+          <span className="link"><Link to="/registro">Registrarse</Link></span>
+             
           <button type="submit" className="button">
             Enviar
           </button>
         </form>
+
         {
         error && (
           <span className="error-message">Credenciales inválidas</span>
