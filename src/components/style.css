@@ -1,176 +1,163 @@
-body{
-	background-image: url('../assets/computers.jpg');
-    background-size: cover;
-	background-color: rgba(173, 216, 230, 0.5); /* Adjust the alpha value (0.5) as needed */
-
+body {
+  background-image: url("../assets/computers.jpg");
+  background-size: cover;
+  background-color: rgba(
+    173,
+    216,
+    230,
+    0.5
+  ); 
 }
 
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .card {
-    width: auto;
-    padding: 1rem;
-    border-radius: 0.25rem;
-	background-color: azure;
- /*   background-image: url('../assets/fondoRegister.jpg');
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  width: auto;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  background-color: azure;
+  /*   background-image: url('../assets/fondoRegister.jpg');
     background-size: cover; */
   overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 10);
-    /* Evita que los elementos hijos salgan de la tarjeta */
-  }
-  
-  .input-field {
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    width: auto;
-	height: 30px;
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 0.25rem;
-    margin-bottom: 1rem;
-	font-size: 18px;
-    box-sizing: border-box; /* Asegura que el padding no se agregue al ancho total */
-  }
-  .field{
-	margin-bottom: 1rem;
-   
- }
- 
-  .input-field:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-  }
-  
-  .button {
-    background: #007bff;
-    color: white;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    transition: background 0.3s ease-in-out;
-	margin-left: 1rem;
-  }
-  
-  .button:hover {
-    background: #0056b3;
-  }
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 10);
+  /* Evita que los elementos hijos salgan de la tarjeta */
+}
 
-  .a{
-	color:white;
+.input-field {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  width: auto;
+  height: 30px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  margin-bottom: 1rem;
+  font-size: 18px;
+  box-sizing: border-box; /* Asegura que el padding no se agregue al ancho total */
+}
+.field {
+  margin-bottom: 1rem;
+}
+
+.input-field:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.button {
+  background: #007bff;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+  margin-left: 1rem;
+}
+
+.button:hover {
+  background: #0056b3;
+}
+
+.a {
+  color: white;
   font-size: 12px;
-  }
+}
 
-  .welcome{
-	font-size: 26px;
-	margin-bottom: 0.5rem;
-  }
+.welcome {
+  font-size: 26px;
+  margin-bottom: 0.5rem;
+}
 
+.error-message {
+  width: 400px;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font: bold;
+  color: white;
+  background: rgba(0, 0, 0, 0.7);
+}
 
- 
+.error-message:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
 
+.link {
+  background: white;
+  /* color: white;*/
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+  margin-left: 1rem;
+}
 
-  .error-message{
-	width:400px;
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-	font-size: 18px;
-	font:bold;
-	color:white;
-    background: rgba(0, 0, 0, 0.7);
-  }
-
-
-  .error-message:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-  }
-
-  .link{
-   background: white;
-   /* color: white;*/
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    transition: background 0.3s ease-in-out;
-	  margin-left: 1rem;
-
-  }
- 
-  .button_task {
-    background: #007bff;
-    color: white;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    transition: background 0.3s ease-in-out;
-	margin-left: 1rem;
+.button_task {
+  background: #007bff;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+  margin-left: 1rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+.button_task:hover {
+  background: #0056b3;
+}
+
+.link_datos {
+  background: white;
+  /* color: white;*/
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  transition: background 0.3s ease-in-out;
+  display: flex;
+  font-size: 17px;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (min-width: 900px) {
+  .input-field {
+    width: 400px;
   }
+}
+
+@media screen and (min-width: 500px) and (max-width: 870px) {
+  body {
   
-  .button_task:hover {
-    background: #0056b3;
+    background-size: contain;
+    /*  background-color: rgba(173, 216, 230, 0.9);*/
   }
 
-
-  .link_datos{
-    background: white;
-   /* color: white;*/
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    transition: background 0.3s ease-in-out;
-	  margin-left: 1rem;
-    font-size: 21px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  @media screen and (min-width: 900px) {
-	.input-field {
-	  width: 400px; 
-	}
+  .container {
+    align-items: flex-start;
   }
 
-
-  @media screen and (min-width: 600px) and (max-width: 800px) {
-	body {
-	  background-size: contain; 
-	/*  background-color: rgba(173, 216, 230, 0.9);*/
-	}
-  
-	.container {
-	  align-items: flex-start; 
-	}
-  
-	.card {
-		max-width: 100% !important;
-
-	}
-  
-	.input-field {
-	  width: 100%; 
-	}
-  
-	.button {
-	  margin-left: 0; 
-	}
+  .card {
+    max-width: 100% !important;
   }
-  
 
+  .input-field {
+    width: 100%;
+  }
 
+  .button {
+    margin-left: 0;
+  }
 
-
-
-  
+}

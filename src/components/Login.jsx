@@ -30,13 +30,14 @@ export const Login = () => {
         },
         body: JSON.stringify(data),
       });
-      //console.log(response);
       
       const responseBody = await response.text(); // Leer el cuerpo de la respuesta
       
       if (response.ok) {
         const { token } = JSON.parse(responseBody);
+        const { user_id } = JSON.parse(responseBody);
         localStorage.setItem("token", token);
+        localStorage.setItem("user_id", user_id);
         alert('Crendeciales correcta formulario ok')
         navigate("/Task");
       } else {

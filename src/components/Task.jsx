@@ -2,69 +2,71 @@ import { useState, useEffect } from "react";
 import { axiosWithAuth } from "./Token";
 
 export const Task = () => {
-  const url = "https://api-tarea-frrzc.ondigitalocean.app/api/tarea";
-  const [tareas, setTareas] = useState([]);
-  const [nuevaTarea, setNuevaTarea] = useState({
+  const apiUrl = "https://api-tarea-frrzc.ondigitalocean.app/api/tarea";
+  const [tasks, setTasks] = useState([]);
+  const user_cod = localStorage.getItem("user_id");
+  const [newTask, setNewTask] = useState({
     tarea_titulo: "",
     tarea_descripcion: "",
     tarea_estado: "Pendiente",
-    codigo_user: 1,
+    codigo_user: user_cod,
   });
-  const [editarTarea, setEditarTarea] = useState(null);
+  const [editTask, setEditTask] = useState(null);
 
   useEffect(() => {
-    obtenerTareas();
+    fetchTasks();
   }, []);
 
-  const obtenerTareas = async () => {
+  //obtener los datos
+  const fetchTasks = async () => {
     try {
-      const respuesta = await axiosWithAuth.get(url);
-      setTareas(respuesta.data.tareas);
-      console.log(respuesta.data.tareas);
+      const response = await axiosWithAuth.get(apiUrl);
+      setTasks(response.data.tareas);
     } catch (error) {
       console.error("Error al obtener tareas:", error);
     }
   };
 
-  const crearTarea = async () => {
+  const createTask = async () => {
     try {
-      console.log("Cuerpo de nueva tarea:", nuevaTarea);
-      const respuesta = await axiosWithAuth.post(url, nuevaTarea);
-      console.log(respuesta.data.nuevaTarea);
-      setNuevaTarea({
+      const response = await axiosWithAuth.post(apiUrl, newTask);
+      setNewTask({
         tarea_titulo: "",
         tarea_descripcion: "",
         tarea_estado: "Pendiente",
-        codigo_user: 1,
+        codigo_user: "",
       });
-      obtenerTareas();
+      console.log(response);
+
+      console.log(newTask);
+      fetchTasks();
     } catch (error) {
       console.error("Error al crear tarea:", error);
     }
   };
 
-  const actualizarTarea = async () => {
-    if (!editarTarea) {
+  const updateTask = async () => {
+    if (!editTask) {
       return;
     }
 
     try {
-      const respuesta = await axiosWithAuth.put(
-        `${url}/${editarTarea.id}`,
-        editarTarea
+      const response = await axiosWithAuth.put(
+        `${apiUrl}/${editTask.id}`,
+        editTask
       );
-      console.log(respuesta.data);
-      setEditarTarea(null);
-      obtenerTareas();
+      setEditTask(null);
+      fetchTasks();
+      console.log(response);
     } catch (error) {
       console.error("Error al actualizar tarea:", error);
     }
   };
 
-  const eliminarTarea = async (id) => {
+  const deleteTask = async (id) => {
     try {
-      await axiosWithAuth.delete(`${url}/${id}`);
-      obtenerTareas();
+      await axiosWithAuth.delete(`${apiUrl}/${id}`);
+      fetchTasks();
     } catch (error) {
       console.error("Error al eliminar tarea:", error);
     }
@@ -72,62 +74,69 @@ export const Task = () => {
 
   return (
     <div className="container">
-      <div className="">
+      <div>
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            if (editarTarea) {
-              actualizarTarea();
+            if (editTask) {
+              updateTask();
             } else {
-              crearTarea();
+              createTask();
             }
           }}
         >
           <div className="field">
             <input
               type="text"
-              className="input-field "
+              className="input-field"
               placeholder="Título"
-              value={nuevaTarea.tarea_titulo}
+              value={editTask ? editTask.tarea_titulo : newTask.tarea_titulo}
               onChange={(e) =>
-                setNuevaTarea((prevState) => ({
-                  ...prevState,
-                  tarea_titulo: e.target.value,
-                }))
+                editTask
+                  ? setEditTask({ ...editTask, tarea_titulo: e.target.value })
+                  : setNewTask({ ...newTask, tarea_titulo: e.target.value })
               }
             />
           </div>
 
-          <div className="field">
-            <input
-              type="text"
-              className="input-field "
-              placeholder="Descripción"
-              value={nuevaTarea.tarea_descripcion}
-              onChange={(e) =>
-                setNuevaTarea((prevState) => ({
-                  ...prevState,
-                  tarea_descripcion: e.target.value,
-                }))
-              }
-            />
-          </div>
           <div className="field">
             <input
               type="text"
               className="input-field"
-              placeholder="Estado"
-              value={nuevaTarea.tarea_estado}
+              placeholder="Descripción"
+              value={
+                editTask
+                  ? editTask.tarea_descripcion
+                  : newTask.tarea_descripcion
+              }
               onChange={(e) =>
-                setNuevaTarea((prevState) => ({
-                  ...prevState,
-                  tarea_estado: e.target.value,
-                }))
+                editTask
+                  ? setEditTask({
+                      ...editTask,
+                      tarea_descripcion: e.target.value,
+                    })
+                  : setNewTask({
+                      ...newTask,
+                      tarea_descripcion: e.target.value,
+                    })
+              }
+            />
+          </div>
+          <div className="filed">
+            <input
+              type="text"
+              className="input-field"
+              placeholder="Estado"
+              value={editTask ? editTask.tarea_estado : newTask.tarea_estado}
+              onChange={(e) =>
+                editTask
+                  ? setEditTask({ ...editTask, tarea_estado: e.target.value })
+                  : setNewTask({ ...newTask, tarea_estado: e.target.value })
               }
             />
           </div>
 
-          {editarTarea ? (
+          {editTask ? (
             <button className="button" type="submit">
               Actualizar Tarea
             </button>
@@ -138,41 +147,32 @@ export const Task = () => {
           )}
         </form>
 
-        <ul>
-          {Array.isArray(tareas) && tareas.length > 0 ? (
-            tareas.map((tarea) => (
-              <li key={tarea.id}>
-                <span className="link_datos">
-                  Título: {tarea.tarea_titulo} - Descripción:{" "}
-                  {tarea.tarea_descripcion} - Estado: {tarea.tarea_estado} -
-                  Nombre usuario: {tarea.user_name}
-                </span>
-                <button
-                  className="button_task"
-                  onClick={() => {
-                    setEditarTarea({ ...tarea });
-                    setNuevaTarea({
-                      tarea_titulo: tarea.tarea_titulo,
-                      tarea_descripcion: tarea.tarea_descripcion,
-                    });
-                  }}
-                >
-                  Editar
-                </button>
-                <button
-                  className="link"
-                  onClick={() => {
-                    eliminarTarea(tarea.id);
-                  }}
-                >
-                  Eliminar
-                </button>
-              </li>
-            ))
-          ) : (
-            <li className="error-message">No hay tareas disponibles</li>
-          )}
-        </ul>
+        <div>
+          <ul>
+            {tasks.length > 0 ? (
+              tasks.map((task) => (
+                <li key={task.id}>
+                  <span className="link_datos" >
+                    Título: {task.tarea_titulo} - Descripción:{" "}
+                    {task.tarea_descripcion} - Estado: {task.tarea_estado}{" "}
+                    Usuario: {task.user_name}
+                  </span>
+                  <button
+                    className="button_task"
+                    onClick={() => setEditTask({ ...task })}
+                  >
+                    Editar
+                  </button>
+                  <button className="link" onClick={() => deleteTask(task.id)}>
+                    Eliminar
+                  </button>
+                </li>
+              ))
+            ) : (
+              <li className="error-message">No hay tareas disponibles</li>
+            )}
+          </ul>
+        </div>
       </div>
     </div>
   );
